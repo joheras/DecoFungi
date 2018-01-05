@@ -1,0 +1,12 @@
+.botones {
+    position: relative;
+    top: 105%;
+}
+
+
+input[type='checkbox']{
+    transform: scale(1.5);
+}
+input[type='checkbox']:checked:before{
+    background-color: #009900;
+}

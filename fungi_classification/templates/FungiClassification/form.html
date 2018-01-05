@@ -1,0 +1,30 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link href="{% static 'css/formularios.css' %}" rel="stylesheet" media="all" type="text/css">
+    <link href="{% static 'css/navigationMenu.css' %}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+
+    </div>
+    <pre></pre>
+    <div class="cuerpo">
+        <div class="right">
+            <div class="intro">
+                <p><b>{{ intro1 }}</b> {{ intro2 }} </p>
+            </div>
+             <div class='tooltip'>
+                 <span class="tooltiptext">{{ tooltiptext }}</span>
+                <form id="Formulario" name="f1" action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Upload and analyse">
+                </form>
+             </div>
+            </div>
+    </div>
+{% endblock %}

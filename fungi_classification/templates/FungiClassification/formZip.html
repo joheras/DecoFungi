@@ -1,0 +1,32 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link href="{% static 'css/menu.css' %}" rel="stylesheet" media="all" type="text/css">
+    <link href="{% static 'css/navigationMenu.css' %}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="cuerpo">
+            <div class="intro">
+                <p><b>Analyse a zip file:</b> select a zip file containing images from several fungal strains. </p>
+             <div class='tooltip'>
+                 <span class="tooltiptext">Be careful, the file must have .zip extension and the zip file should only contain the images to analyse. Once that you have loaded the zip file, press <b>Upload and analyse</b> button.
+                  The processing of the images might take some time depending on the number of images.</span>
+                <form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+                    <p><label>Zip file:</label> <input type="file" name="zip" required></p>
+                    <input type="submit" value="Upload and analyse">
+                   <p>{{ error }}</p>
+    </form>
+
+             </div>
+            </div>
+        <hr/>
+        <div class="intro">
+            <p>A zip example can be downloaded from the following <a href="{$ static 'fungi-classification/exampleControl.zip' %}">link</a>.</p>
+        </div>
+    </div>
+{% endblock %}

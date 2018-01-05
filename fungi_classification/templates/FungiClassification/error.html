@@ -1,0 +1,30 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block scripts %}
+<link href="{% static 'css/error.css' %}" rel="stylesheet" media="all" type="text/css">
+<link href="{% static 'css/about.css' %}" rel="stylesheet" media="all" type="text/css">
+<link href="{% static 'css/tutorial.css' %}" rel="stylesheet" media="all" type="text/css">
+<link href="{% static 'css/navigationMenu.css' %}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="cuerpo">
+<div class="right">
+                    <table id="1">
+                        <tr>
+                            <td id="img">
+                                <img src="/media/css/error.PNG" width="70%">
+                            </td>
+                            <td>
+                                <div class="msgerr">
+                                    <p><label><b><u>ERROR</u>:</b></label> {{ mensaje }}</p>
+                                    </div>
+                            </td>
+                        </tr>
+                    </table>
+            <div class="boton"><a href="/mvc/"><input type="button" id="boton" value="Exit"></a></div>
+</div>
+</div>
+{% endblock %}

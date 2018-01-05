@@ -1,0 +1,327 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link href="{% static 'css/navigationMenu.css' %}" rel="stylesheet" media="all" type="text/css">
+    <link href="{% static 'css/disenoCuerpo.css' %}" rel="stylesheet" media="all" type="text/css">
+    <link href="{% static 'css/botones1.css' %}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block scripts %}
+<script>
+        window.onload= function () {
+            selects = document.getElementsByName('resultado')
+            predicciones = new Array();
+            for (var j = 0; j < selects.length; j++) {
+                valor = selects[j].options[selects[j].selectedIndex].value
+                predicciones[j] = valor
+                selects[j].style.backgroundColor='lightcoral'
+            }
+            nombres = document.getElementsByName('nombre')
+            listanombres = new Array();
+            for (var i = 0; i < nombres.length; i++) {
+                listanombres[i] = nombres[i].value
+                nombres[i].style.backgroundColor = 'lightcoral'
+            }
+            items=selects.length
+            contador=selects.length
+        }
+
+        function QuitarColor(i){
+            document.getElementById('resultado'+i).style.backgroundColor='white'
+        }
+        function ChangeN(i) {
+                document.getElementById('nombre'+i).readOnly=false
+                document.getElementById('nombre'+i).style.backgroundColor='white'
+                img=document.getElementById('lapiz'+i)
+                img.setAttribute('style', 'filter: brightness(600%); filter:opacity(50%) ')
+        }
+
+        function Restablecer() {
+            selects2=document.getElementsByName('resultado')
+            noms=document.getElementsByName('nombre')
+            tintes=document.getElementsByName('tinte')
+            obs=document.getElementsByName('notas')
+            img=document.getElementsByName('lapiz')
+            for(var i=0;i<selects2.length;i++){
+                if(tintes.length>1) {
+                    selects2[i].value = predicciones[i]
+                     selects2[i].style.backgroundColor='lightcoral'
+                    noms[i].value = listanombres[i]
+                    noms[i].readOnly=true
+                    noms[i].style.backgroundColor='lightcoral'
+                    tintes[i].value = ""
+                    obs[i].value = ""
+                    img[i].setAttribute('style', 'filter: brightness(100%); filter:opacity(1000%) ')
+
+                }else{
+                    selects2[i].value = predicciones[i]
+                    selects2[i].style.backgroundColor='lightcoral'
+                    noms[i].value = listanombres[i]
+                    noms[i].readOnly=true
+                    noms[i].style.backgroundColor='lightcoral'
+                    tintes[0].value = ""
+                    obs[i].value = ""
+                    img[i].setAttribute('style', 'filter: brightness(100%); filter:opacity(1000%) ')
+                }
+            }
+        }
+
+   function Cambio() {
+            checkboxes=document.getElementsByName('chb')
+            imgn=document.getElementsByName('imagen')
+            cell=document.getElementsByName('celdas')
+            tintes=document.getElementsByName('tinte')
+            lapices=document.getElementsByName('lapiz')
+            if(document.getElementsByName('chball')[0].checked==false){
+                document.get
+                for(var i=0;i<checkboxes.length;i++){
+                        imgn[i].setAttribute('style', 'filter: brightness(600%); filter:opacity(50%) ')
+                        cell[i].style.backgroundColor = 'gainsboro'
+                        checkboxes[i].checked = false
+                        document.getElementById('resultado' + (i + 1)).disabled = 'disabled'
+                        document.getElementById('nombre' + (i + 1)).disabled = 'disabled'
+                        document.getElementById('notas' + (i + 1)).disabled = 'disabled'
+                        if(tintes.length>1){
+                            tintes[i].disabled = 'disabled'
+
+                        }else{
+                            tintes[0].disabled='disabled'
+                        }
+
+
+                }
+                contador=0
+            }else{
+                for(var i=0;i<checkboxes.length;i++){
+                    checkboxes[i].checked=true
+                    document.getElementById('resultado'+(i+1)).disabled=false
+                    document.getElementById('nombre'+(i+1)).disabled=false
+                    document.getElementById('notas'+(i+1)).disabled=false
+                    imgn[i].setAttribute('style', 'filter: brightness(100%); filter:opacity(1000%) ')
+                    cell[i].style.backgroundColor='ivory'
+                    if(tintes.length>1){
+                       tintes[i].disabled = false
+                    }else{
+                       tintes[0].disabled= false
+                    }
+
+                    }
+
+
+                contador=checkboxes.length
+
+            }
+
+        }
+        function VerCheck(i) {
+            tintes=document.getElementsByName('tinte')
+
+            if(document.getElementById('chb'+i).checked==true){
+                img=document.getElementById('img'+i)
+                    img.setAttribute('style', 'filter: brightness(100%); filter:opacity(1000%) ')
+                celda=document.getElementById('td'+i)
+                celda.style.backgroundColor='ivory'
+                if(tintes.length>1) {
+                    document.getElementById('resultado' + i).disabled = false
+                    document.getElementById('nombre' + i).disabled = false
+                    document.getElementById('tinte' + i).disabled = false
+                    document.getElementById('notas' + i).disabled = false
+                    document.getElementById('lapiz' + i).parentNode.onclick = function () {
+                        ChangeN(i)
+                    }
+                }else{
+                    document.getElementById('resultado' + i).disabled = false
+                    document.getElementById('nombre' + i).disabled = false
+                    document.getElementById('notas' + i).disabled = false
+                    document.getElementById('lapiz' + i).parentNode.onclick = function () {
+                        ChangeN(i)
+                    }
+                }
+
+               contador=contador+1
+                if(contador==items){
+                   document.getElementsByName('chball')[0].checked=true
+                }
+
+            }else{
+                img=document.getElementById('img'+i)
+                    img.setAttribute('style', 'filter: brightness(600%); filter:opacity(50%) ')
+                celda=document.getElementById('td'+i)
+                celda.style.backgroundColor='gainsboro'
+
+                contador=contador-1
+                if(tintes.length>1){
+                   document.getElementsByName('chball')[0].checked=false
+                    document.getElementById('resultado'+i).disabled='disabled'
+                    document.getElementById('nombre'+i).disabled='disabled'
+                    document.getElementById('tinte'+i).disabled='disabled'
+                    document.getElementById('notas'+i).disabled='disabled'
+                    document.getElementById('lapiz'+i).parentNode.onclick=function () {
+                        return false;
+                    }
+                }else{
+                    document.getElementsByName('chball')[0].checked=false
+                    document.getElementById('resultado'+i).disabled='disabled'
+                    document.getElementById('nombre'+i).disabled='disabled'
+                    document.getElementById('notas'+i).disabled='disabled'
+                    document.getElementById('lapiz'+i).parentNode.onclick=function () {
+                        return false;
+                    }
+                }
+
+
+            }
+
+        }
+
+        function ComprobarCheck() {
+            if(contador==0){
+                alert('No data selected to save.')
+                document.getElementById('boton').type='button'
+                return false;
+            }else{
+                 document.getElementById('boton').type='submit'
+            }
+
+        }
+
+        function check_text(input) {
+            aler(input)
+            if (input.validity.patternMismatch) {
+                input.setCustomValidity("Debe ingresar al menos 3 LETRAS");
+            }
+            else {
+                input.setCustomValidity("");
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="cuerpo">
+    <form id="Formulario2" name="f2" action="" method="POST">{% csrf_token %}
+
+        {% if request.session.imagenCont is not None %}
+        <div class="left">
+            <table id="1" style="width:100% ">
+                <thead>
+                <tr>
+                    <th>Control image</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td >
+                        <div class="Imagencontrol" >
+                        <img src="../../../media/{{ request.session.imagenCont }}" width="70%">
+
+                            <div class="tooltip3">
+                             <span class="tooltiptext3">You must enter the type of dye before saving data.</span>
+                             <p><b><label  name='asterisk'>Dye: </label></b><br/><input type="text" name="tinte" id="tinte" required size="14" oninvalid="this.setCustomValidity('This field can not be empty');" oninput="this.setCustomValidity('');" ></p>
+                             </div>
+
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+            <table id="2"{% if request.session.imagenCont is not None%} style=" width: 80%; margin-left:20%; position: relative"{% else %}style=" width: 100%;"{% endif %}>
+                <thead >
+                <tr>
+                    <th>Results</th>
+                </tr>
+                </thead>
+              </table>
+         <div class="right" {% if request.session.imagenCont is not None %} style=" width: 79.1%; left:20.35%"{% else %}style=" width: 98.9%; left:0.55%"{% endif %}>
+
+                <table id="1"{% if list|length > 2%}style="width: 100%;"{% endif%}>
+                <tbody>
+                 <tr>
+                    {%for i in list%}
+
+                        <td id="td{{ forloop.counter }}" name="celdas">
+                            <table style="width:100%">
+
+                        <div class="cuadro">
+                             <span class="checkbox">
+                                {% if request.session.zip is not None %}<input type="checkbox" name="chb" id="chb{{ forloop.counter }}" checked="true" onclick="VerCheck({{ forloop.counter }})">{% endif %}
+                            </span>
+                            <span class="img">
+                                {% if request.session.imagenCont is not None and  request.session.zip is not None %}
+                                    <img src="../../../media/{{i.0}}" id="img{{ forloop.counter }}" name='imagen' width="70%"/>
+                                    {% elif request.session.imagenCont is not None %}
+                                     <img src='../../../media/{{ i.0 }}' width="70%" >
+                                    {% elif request.session.zip is not None %}
+                                     <img id='img{{ forloop.counter }}' name="imagen" src='../../../media/{{i.0}}' width="70%" >
+                                    {% else %}
+                                    <img src='../../../media/{{i.0}}' id="'img0"  width="70%"/>
+                                {% endif %}
+                            </span>
+
+                            <span class="data">
+                                <div>
+                            <div class='tooltip'>
+                                <span class="tooltiptext">It is possible to modify the prediction of the model.</span>
+                                    <p><label><b>Prediction:</b><br/></label><select id="resultado{{ forloop.counter }}" name="resultado" onfocus="QuitarColor({{ forloop.counter }})" required >
+                                                               <option value="+++" {% ifequal i.1 "+++" %} selected {% endifequal %} >+++</option>
+                                                               <option value="++" {% ifequal i.1 "++" %} selected {% endifequal %}>++</option>
+                                                               <option value="+" {% ifequal i.1 "+" %} selected {% endifequal %}>+</option>
+                                                               <option value="-" {% ifequal i.1 "-" %} selected {% endifequal %}>-</option>
+                                                            </select></p></div>
+                             <div class="tooltip1">
+                               <span class="tooltiptext1">You can change the name of the sample. Click on the pen button.</span>
+                                 <p><label  name='asterisk'><b>Name:</b></label><br/><input type="text" name="nombre" id="nombre{{ forloop.counter }}" value="{{i.2}}" size="10" readonly="'true" oninvalid="this.setCustomValidity('This field can not be empty');" oninput="this.setCustomValidity('');" required/>
+                                                    <a href="#" name="changeN" onclick="ChangeN({{forloop.counter}})"><img name="lapiz" id='lapiz{{ forloop.counter }}' src="/media/css/change.png" height="30%" width="8%"></a>
+                                 </p>
+                             </div>
+                                {% if request.session.imagenCont is not None %}
+                                {% else %}
+                                  <div class="tooltip2">
+                                    <span class="tooltiptext2">You can enter the type of dye before exporting the data.</span>
+                                        <p><label  name='asterisk'><b>Dye: </b></label><br/>
+                                            <input type="text" name="tinte" id="tinte{{ forloop.counter }}" value="" size="12" oninvalid="this.setCustomValidity('This field can not be empty');" oninput="this.setCustomValidity('');" required></p>
+                                   </div>
+                                {% endif %}
+
+                                    <p><b><label>Observations:</label> </b><textarea name='notas' id='notas{{ forloop.counter }}' rows='4' placeholder='Write some notes'></textarea>
+                                    </p>
+                                </div>
+                            </span>
+
+                        </div>
+                                </table>
+                        </td>
+                        {% if forloop.counter|divisibleby:2 and request.session.imagenCont is not None %}
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                        {% elif forloop.counter|divisibleby:3 and request.session.imagenCont is None %}
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>
+                        {% endif %}
+                    {% endfor %}
+
+                </tr>
+                </tbody>
+            </table>
+         </div>
+
+    <div class="botones" {% if request.session.imagenCont is not None %} style="margin-left: 35%" {% endif %}  {% if request.session.zip is not None %} style="margin-left: 8%" {% endif %}>
+            {% if request.session.zip is not None %}<label for="chball">Select all: <input type="checkbox" checked="true" name="chball" id="chball" onclick="Cambio()" value="Select All:"></label>{% endif %}
+            <a href="{{ request.session.url }}"> <input type="button" id="back" value="Back"></a>
+            <input type="button" id="predeterminado" value="Restore" onclick="Restablecer()">
+            <input type="submit" id="boton" {% if request.session.zip is not None %} value="Save selection" {% else %}value="Save data"{% endif %} onclick="ComprobarCheck()">
+
+    </div>
+    </form>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,50 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+ <!--- <p>In this webpage, you can conduct a statistical comparison of different algorithms. For more information about this
+  application, see the following links.</p>
+  <ul>
+    <li><a href="">Documentation (format of files, algorithms applied and so on).</a></li>
+    <li><a href="">API.</a></li>
+    <li><a href="">Python code.</a></li>
+  </ul>
+--->
+
+
+
+
+  {% if success %}
+    <p>Analysed image:</p>
+    <img src="{{ uploaded_file_url }}"/>
+    <p>Prediction: {{ prediction }}</p><br/>
+    <a href="{% url 'main' %}">Go back</a>
+
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+    Select the file to analyse:
+      <input type="file" name="image">
+      <br/>
+     <!---Select network:
+       <select name="network">
+  <option value="Overfeat">Overfeat</option>
+  <option value="OverfeatWithControl">Overfeat with control image</option>
+  <option value="GoogleNet">GoogleNet</option>
+  <option value="GoogleNetWithControl">GoogleNet with control image</option>
+</select>
+      <br/>-->
+    <button type="submit">Upload and analyse</button>
+    </form>
+
+
+  Test examples (click on any of the following images):<br/>
+    <a href="{% url 'examples' num=1 %}"><img src="../../media/fungi-classification/1.jpg" width="150" height="150"/></a>
+    <a href="{% url 'examples' num=2 %}"><img src="../../media/fungi-classification/2.jpg" width="150" height="150"/></a>
+    <a href="{% url 'examples' num=3 %}"><img src="../../media/fungi-classification/3.jpg" width="150" height="150"/></a>
+    <a href="{% url 'examples' num=4 %}"><img src="../../media/fungi-classification/4.jpg" width="150" height="150"/></a>
+  {% endif %}
+
+{% endblock %}

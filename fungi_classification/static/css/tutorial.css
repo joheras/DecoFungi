@@ -1,0 +1,123 @@
+html, body {
+	height: 90%;
+    background-color: #f2f2f2;
+}
+h1{
+	color:#009900;
+    position: relative;
+    margin-left: 1%;
+    margin-top: 1.4%;
+}
+
+a{
+	color:#009900;
+}
+.cabecera{
+    height:20%;
+    width: 100%;
+}
+
+.cuerpo{
+	height: 100%;
+}
+
+.left {
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    outline: 1px solid black;
+    background-color: #333;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+
+
+}
+.right {
+    height: 100%;
+    margin-left: 20%;
+    outline: 1px solid black;
+    overflow-y: auto;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+
+h1{
+	color:#009900;
+	position: relative;
+    margin-left: 1%;
+	margin-top: 1.4%;
+
+}
+
+a{
+	color:#009900;
+}
+
+td[id='1'] {
+	background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+
+}
+
+table[id='comp'] {
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+table[id='comp'] td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 30%;
+    height: 50px;
+    text-align: center;
+
+
+}
+img{
+border:1px solid black;
+padding:0px; /* distancia entre la img y el borde */
+margin:5px;
+
+}
+
+
+h2{
+margin-left:2%;}
+
+
+dt{
+font-size: large;
+
+}
+
+ul{
+  list-style-type : none;
+}
+
+
+
+.menuTut {
+    margin-left:0.5%;
+    background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    width:19.1%;
+    z-index: 2;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    left:0%;
+
+}
+
+.left a {
+
+    display: block;
+    color: #f2f2f2;
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+
+}

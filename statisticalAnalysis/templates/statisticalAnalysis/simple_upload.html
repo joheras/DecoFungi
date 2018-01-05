@@ -1,0 +1,28 @@
+{% extends 'statisticalAnalysis/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+  <p>In this webpage, you can conduct a statistical comparison of different algorithms. For more information about this
+  application, see the following links.</p>
+  <ul>
+    <li><a href="">Documentation (format of files, algorithms applied and so on).</a></li>
+    <li><a href="">API.</a></li>
+    <li><a href="">Python code.</a></li>
+  </ul>
+
+
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="myfile">
+    <button type="submit">Upload and analyse</button>
+  </form>
+
+  {% if uploaded_file_url %}
+    <!---<p>Analysed file: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>-->
+    <p>{% autoescape off %}{{ report }}{% endautoescape %}</p>
+  {% endif %}
+
+{% endblock %}

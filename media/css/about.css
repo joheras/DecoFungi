@@ -1,0 +1,8 @@
+td[id='about'] {
+	background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+
+}

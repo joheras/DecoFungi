@@ -1,0 +1,48 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+ <!--- <p>In this webpage, you can conduct a statistical comparison of different algorithms. For more information about this
+  application, see the following links.</p>
+  <ul>
+    <li><a href="">Documentation (format of files, algorithms applied and so on).</a></li>
+    <li><a href="">API.</a></li>
+    <li><a href="">Python code.</a></li>
+  </ul>
+--->
+
+
+
+
+  {% if success %}
+    <p>Analysed images:</p>
+    {% for file,prediction in predictions %}
+      <img src="{{ file }}" width="100" height="100"/>
+      <p>Prediction: {{ prediction }}</p>
+    {% endfor %}
+    <a href="{% url 'zip' %}">Go back</a>
+
+  {% else %}
+    <form method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+    Select the zip file to analyse (the zip file should only contain the images to analyse and must have extension .zip):
+      <input type="file" name="zip">
+      <br/>
+     <!---Select network:
+       <select name="network">
+  <option value="Overfeat">Overfeat</option>
+  <option value="OverfeatWithControl">Overfeat with control image</option>
+  <option value="GoogleNet">GoogleNet</option>
+  <option value="GoogleNetWithControl">GoogleNet with control image</option>
+</select>
+      <br/>-->
+      <p>Once that you have loaded the zip file, press the following button. The processing of the images might take some time depending on the number of images.</p>
+    <button type="submit">Upload and analyse</button>
+    </form>
+
+
+  {% endif %}
+
+{% endblock %}

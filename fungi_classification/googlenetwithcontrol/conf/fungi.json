@@ -1,0 +1,32 @@
+{
+  #######
+  # DATASET SAMPLING CONFIGURATION
+  #######
+  "dataset_path": "/home/joheras/Escritorio/Research/Fungi/FungiImagesOverfeat",
+  "features_path": "/home/joheras/pythonprojects/api/cv_api/fungi_classification/googlenetwithcontrol/output/fungi/features.hdf5",
+
+  #######
+  # GoogleNET CONFIGURATION
+  #######
+  "googlenet_fixed_size": [231, 231],
+  "googlenet_batch_size": 32,
+
+  #######
+  # LABEL ENCODER CONFIGURATION
+  #######
+  "label_encoder_path": "/home/joheras/pythonprojects/api/cv_api/fungi_classification/googlenetwithcontrol/output/fungi/le.cpickle",
+
+  #######
+  # CLASSIFIER CONFIGURATION
+  #######
+  "classifier_path": "/home/joheras/pythonprojects/api/cv_api/fungi_classification/googlenetwithcontrol/output/fungi/classifier",
+  "training_size": 0.75,
+  "results_path": "/home/joheras/pythonprojects/api/cv_api/fungi_classification/googlenetwithcontrol/output/fungi/results",
+  "model" : "SVM",
+
+  #######
+  # PREDICTIONS
+  #######
+  "evaluation_path": "/home/joheras/Escritorio/Research/Fungi/NewImages"
+
+}

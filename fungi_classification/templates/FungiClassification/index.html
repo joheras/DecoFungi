@@ -1,0 +1,58 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block scripts %}
+<link href="{% static 'css/index.css' %}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="cuerpo">
+
+    <div class="intro">
+        <p>
+            Welcome to the web application for automatic characterisation of dye decolorisation in fungal strains.
+            In this application, you can upload and analyse images from your Petry dish and get the corresponding prediction.
+            Through the following menu you can access to the different prediction options, which are the following:
+            <ul>
+                <li> Upload and analyse a single image of a fungal strain.</li>
+                <li> Upload and analyse two images, one of them corresponding to the image of a fungal strain,
+                    and the other corresponds to the control image.</li>
+                <li> Upload and analyse a zip file which contains a group of fungal strains.</li>
+                <li> Upload and analyse a zip file which contains a group of fungal strains and a control image (the control image
+                    must be the same for all the fungal strains of the zip).</li>
+            </ul>
+        </p>
+        </div>
+        <br>
+
+            <div class="menu2">
+
+                <tr>
+                    <td><fieldset name="f1" style="margin-left: 4%" >
+                            <a href="{% url 'predictOne' %}" >Analyse an image</a><br><br>
+                            <a href="{% url 'predictOne' %}"><img id="e1" src="/media/css/metod1.png" height="40%" width="30%"></a>
+                        </fieldset>
+                    </td>
+
+                        <td><fieldset name="f2" style="margin-left:6.5%">
+                            <a href="{% url 'predictControl' %}" >Analyse an image with its control image</a><br>
+                            <a href="{% url 'predictControl' %}"><img id="e2" src="/media/css/metod2.png" height="50%" width="85%"></a>
+                        </fieldset>
+                    </td>
+                    <td><fieldset name="f3" style=" float: left; margin-left: 6.5%">
+                            <a href="{% url 'predictZip' %}" >Analyse a zip file</a><br><br>
+                            <a href="{% url 'predictZip' %}"><img id="e3" src="/media/css/metod3.png"  height="60%" width=45%"></a>
+                        </fieldset>
+                    </td>
+                    <td><fieldset name="f4" style=" float: right; margin-right: 5%">
+                            <a href="{% url 'predictZipControl' %}" >Analyse a zip file with a control image</a><br><br>
+                            <a href="{% url 'predictZipControl' %}"><img id="e4" src="/media/css/metod4.png"  height="60%" width=50%"></a>
+                        </fieldset>
+                    </td>
+                </tr>
+            </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block stylesheets %}
+    <link href="{% static 'css/menu.css' %}" rel="stylesheet" media="all" type="text/css">
+    <link href="{% static 'css/navigationMenu.css' %}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+{% block content %}
+   <div class="cuerpo">
+            <div class="intro">
+                <p><b>Analyse one image:</b> select the image of a fungal strain to obtain its prediction. </p>
+
+             <div class='tooltip'>
+                 <span class="tooltiptext">Select the image of a fungal strain. Once that you have loaded the image, press the <b>Upload and analyse button</b></span>
+                <form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+                    <p><label>Image:</label> <input type="file" name="image" required></p>
+                    <input type="submit" value="Upload and analyse">
+                    <p>{{ error }}</p>
+                </form>
+
+             </div>
+                </div>
+                <hr/>
+<div class="intro">
+                <p>You can also try the application by clicking on one of the following images:</p>
+                <a href="{% url 'examples' num=1 %}"><img src="{% static 'fungi-classification/1.jpg' %}" width="150" height="150"/></a>
+                <a href="{% url 'examples' num=2 %}"><img src="{% static 'fungi-classification/2.jpg' %}" width="150" height="150"/></a>
+                <a href="{% url 'examples' num=3 %}"><img src="{% static 'fungi-classification/3.jpg' %}" width="150" height="150"/></a>
+                <a href="{% url 'examples' num=4 %}"><img src="{% static 'fungi-classification/4.jpg' %}" width="150" height="150"/></a>
+
+
+    </div></div>
+{% endblock %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %} Dye Decolorisation in Fungal Strains {% endblock %}
+    </title>
+    {% block scripts %}
+    <script>
+          window.onload= function () {
+              f1=document.getElementsByName('f1')[0]
+              f1.onclick=Red1;
+
+              f2=document.getElementsByName('f2')[0]
+              f2.onclick=Red2;
+
+              f3=document.getElementsByName('f3')[0]
+              f3.onclick=Red3;
+
+              f4=document.getElementsByName('f4')[0]
+              f4.onclick=Red4;
+          }
+
+          function Red1(){
+                window.location='/fungi_classification/predictFungiClass/'
+          }
+
+          function Red2(){
+                window.location='/fungi_classification/predictFungiClassControl/'
+          }
+          function Red3(){
+                window.location='/fungi_classification/predictFungiClass/zip/'
+          }
+          function Red4(){
+                window.location='/fungi_classification/predictFungiClassControl/zip/'
+          }
+    </script>
+    {% endblock %}
+
+    {% block stylesheets %}
+    {% load static %}
+    <link href="{% static 'css/menu.css' %}" rel="stylesheet" media="all" type="text/css">
+    <link href="{% static 'css/navigationMenu.css' %}" rel="stylesheet" media="all" type="text/css">
+    {% endblock %}
+</head>
+<body>
+
+{% block header %}
+
+<div class="cabecera">
+        <h1>Dye Decolorisation in Fungal Strains</h1>
+       <div class="menu">
+            <table>
+           <td id="index">
+               <a href="/" id="back">Home</a>
+           </td>
+            <td id="dropdown">
+
+                <div class="dropdown">
+                    <button class="dropbtnMenu">Analysis Options</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'predictOne' %}">Analyse an image</a>
+                    <a href="{% url 'predictControl' %}">Analyse an image with its control image</a>
+                    <a href="{% url 'predictZip' %}">Analyse a zip file </a>
+                    <a href="{% url 'predictZipControl' %}">Analyse a zip with a control image</a>
+                  </div>
+                    </div>
+             </td>
+            <td id="about"><a href="{% url 'about' %}" >About</a></td>
+            <td><a href="{% url 'tutorial' %}" id="tutorial">Tutorial</a></td>
+               </table>
+           </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

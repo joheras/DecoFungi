@@ -1,0 +1,130 @@
+{% extends 'FungiClassification/base.html' %}
+
+{% load static %}
+
+{% block scripts %}
+<link href="{% static 'css/tuto.css' %}" rel="stylesheet" media="all" type="text/css">
+<link href="{% static 'css/tutorial.css' %}" rel="stylesheet" media="all" type="text/css">
+<link href="{% static 'css/navigationMenu.css' %}" rel="stylesheet" media="all" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+<div class="cuerpo">
+    <div class="left">
+            <h2 style="color:#009900; margin-left:10%">Tutorial menu</h2>
+            <ul>
+            <li><a href="#1">1. Images</a></li>
+            <li><a href="#2">2. Analysis</a></li>
+                <ul><li><a href="#21">2.1 Steps for analysis</a></li></ul>
+            <li><a href="#3">3. Prediction page </a></li>
+                <ul><li><a href="#31">3.1 Prediction aspects</a></li>
+                <li><a href="#32">3.2 Button menu</a></li>
+                <li><a href="#33">3.3 Zip funcionality</a></li></ul>
+            <li><a href="#4">4. Videos </a></li>
+            </ul>
+    </div>
+    <div class="right">
+        <h2>Tutorial page</h2>
+        <blockquote>
+        <a name="1"></a>
+        <h3>1. Images</h3>
+        <blockquote>
+        <p>This web application analyse two types of fungi images, all of them contained in their respective Petry dish.
+            <ul>
+                <li><b>Fungi image:</b> that correspond to the dyed fungi, is the image that we want to obtain the prediction.</li>
+                <img src="{% static 'tutorial_files/ejemplo1.jpg' %}" width="10%" align="center">
+                <li><b>Control image:</b> is only dye. We use it to improve the reliability of the prediction.</li>
+                <img src="{% static 'tutorial_files/ejemplo2.jpg' %}" width="10%">
+            </ul>
+        </p>
+        </blockquote>
+            <a name="2"></a>
+        <h3>2. Analisys </h3>
+        <blockquote>
+        <p>We can group the methods of analysis according to two criteria:
+            <ul>
+            <li>Analyze one image or a zip folder of images.</li>
+            <li>Analysis using or not control image.</li>
+            </ul>
+        </p>
+            <blockquote>
+        <table id="comp">
+            <tr>
+                <th></th>
+                <th>One image</th>
+                <th>Zip file</th>
+            </tr>
+            <tr>
+                <td><b>Without control image</b></td>
+                <td>Analyze one image</td>
+                <td>Analyze a zip file</td>
+            </tr>
+             <tr>
+                 <td><b>Using control image</b></td>
+                <td>Analyze one image with control one</td>
+                <td>Analyze a zip with control image</td>
+            </tr>
+
+        </table>
+            </blockquote>
+            <a name="21"></a>
+        <p><b>2.1 Steps for analysis:</b><br>
+            <blockquote>
+                <li><b>Step 1:</b> Select the analisys method option on the Menu page.<br>
+                <img src="{% static 'tutorial_files/ejemplo3.png' %}" width="100%"><br>
+                Then it will appear the correspond charge image/zip formulary.<br>
+                <img src="{% static 'tutorial_files/ejemplo4.png' %}" width="30%">
+                </li>
+                <li><b>Step 2:</b>Pressing 'Examinar' button apeared the following window.
+                    Choose the corresponding file to analyse that it must be in the directory media of our application.<br>
+                    <img src="{% static 'tutorial_files/ejemplo5.png' %}" width="50%"><br>
+                    Take care it must be an image or a zip file extension. </li><br>
+                <li><b>Step 3:</b> Once the file is selected, click on the "Upload and analyze" button to get the prediction.<br>
+                <img src="{% static 'tutorial_files/ejemplo6.png' %}" width="30%">
+                </li><br>
+            </blockquote>
+        </p>
+        </blockquote>
+        <a name="3"></a>
+        <h3>3. Prediction page</h3>
+        <blockquote>
+            <a name="31"></a>
+            <p><b>3.1 Prediction aspects:</b>The prediction has the following form.<br>
+            <img src="{% static 'tutorial_files/ejemplo7.png' %}" width="30%"><br>
+            The prediction value and the sample name are given by the model, while the dye used field is empty and we must to introduce it.<br>
+            Note that the prediction, name and dye data are obligatory. Also we can introduce some notes optionally.
+        </p>
+        <p>If we are not satisfied with the data obtained by the application (prediction and name), we can change them.<br>
+            To change the name we just have to press the arrow on the combobox. Then it will appear the possible predictive values.<br>
+             <img src="{% static 'tutorial_files/ejemplo8.png' %}" width="50%"><br>
+            To change the sample name we must to click on the pencil icon, then we can write into the textbox area.<br>
+            <img src="{% static 'tutorial_files/ejemplo9.png' %}" width="50%"><br>
+            Once we have clicked on the red textbox background color disappeared.
+        </p>
+            <a name="32"></a>
+        <p><b>3.2 Button menu:</b>
+            <ul>
+            <li>Back to analyse: Back to the previous page, corresponding to the file charge formulary.</li>
+            <li>Restore: If we want to return to the initial state just after obtaining the prediction, we have the restore option which allows to return to the initial values.</li>
+            <li>Save data/ Save selection: Save the obtained and introduced data into a Data base.</li>
+            </ul>
+            <blockquote><img src="{% static 'tutorial_files/ejemplo10.png' %}" width="20%"><br></blockquote>
+        </p>
+            <a name="33"></a>
+        <p><b>3.3 Zip funcionality</b><br>
+            In the case of using a method that analyzes a zip file we can select those predictions that wanted to be saved. To do this, in the upper right of
+            each prediction a checkbox appears. If the checkbox are checked it means that the correspond prediction is going to be saved.<br>
+            <img src="{% static 'tutorial_files/ejemplo11.png' %}" width="60%"><br>
+            Also we have a checkbox called "Select All:" that allows you to select and deselect all predictions.<br>
+            <img src="{% static 'tutorial_files/ejemplo12.png' %}" width="10%"><br>
+        </p>
+        </blockquote>
+        <a name="4"></a>
+        <h3>4. Videos</h3>
+         <blockquote><video src="{% static 'tutorial_files/video1.mp4' %}" type="video/mp4"width="50%" ></video> </blockquote>
+
+        </blockquote>
+    </div>
+</div>
+{% endblock %}
